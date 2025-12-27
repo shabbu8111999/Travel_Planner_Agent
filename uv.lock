@@ -1647,6 +1647,7 @@ version = "0.1.0"
 source = { virtual = "." }
 dependencies = [
     { name = "langchain" },
+    { name = "langchain-core" },
     { name = "langchain-openai" },
     { name = "openai" },
     { name = "python-dotenv" },
@@ -1657,6 +1658,7 @@ dependencies = [
 [package.metadata]
 requires-dist = [
     { name = "langchain", specifier = ">=1.2.0" },
+    { name = "langchain-core", specifier = ">=1.2.5" },
     { name = "langchain-openai", specifier = ">=1.1.6" },
     { name = "openai", specifier = ">=2.14.0" },
     { name = "python-dotenv", specifier = ">=1.2.1" },
