@@ -7,9 +7,17 @@ from utils.guardrails import is_travel_related
 from utils.language_helper import build_prompt
 
 
+# Streamlit Page Config
+st.set_page_config(page_title="Agentic Travel Planner")
+
+
 # Load OpenAI API Key securely
 os.environ["OPENAI_API_KEY"] = st.secrets["OPENAI_API_KEY"]
 
+
+# Initialize Trip History (Session-based)
+if "history" not in st.session_state:
+    st.session_state.history = []
 
 # Greeting Messages (Multi-language)
 GREETINGS = {
@@ -19,21 +27,39 @@ GREETINGS = {
     "Bengali": "নমস্কার! 👋 আমি আপনার AI ভ্রমণ সহকারী। আমি কীভাবে সাহায্য করতে পারি?"
 }
 
-# Initialize Trip History (Session-based)
-if "history" not in st.session_state:
-    st.session_state.history = []
-
-
-# Streamlit Page Config
-st.set_page_config(page_title="Agentic Travel Planner")
-
-
 # Simple Font Styling
 st.markdown(
     """
     <style>
-    .big-font {
-        font-size:22px !important;
+    .stApp { font-size: 18px; }
+
+    .app-title {
+        font-size: 38px;
+        font-weight: 700;
+        margin-bottom: 10px;
+    }
+
+    .section-title {
+        font-size: 26px;
+        font-weight: 600;
+        margin-top: 25px;
+        margin-bottom: 10px;
+    }
+
+    .readable-text {
+        font-size: 20px;
+        line-height: 1.6;
+    }
+
+    .success-text {
+        font-size: 22px;
+        font-weight: 600;
+        margin-top: 15px;
+    }
+
+    .greeting-text {
+        font-size: 22px;
+        margin-bottom: 15px;
     }
     </style>
     """,
@@ -43,9 +69,10 @@ st.markdown(
 
 # App Title
 st.markdown(
-    '<p class="big-font">🌍 Agentic AI Travel Planner</p>',
+    '<div class="app-title">TripSage – Your Intelligent Travel Guide 🪄</div>',
     unsafe_allow_html=True
 )
+
 
 
 #Greeting Language Selection
@@ -110,11 +137,20 @@ if st.button("Plan My Trip"):
         })
 
     # Display Result
-    st.success("Trip Planned Successfully!")
-    st.markdown(result)
+    st.markdown(
+        '<div class="success-text">✅ Trip Planned Successfully!</div>',
+        unsafe_allow_html=True
+    )
 
+    st.markdown(
+        f'<div class="readable-text">{result}</div>',
+        unsafe_allow_html=True
+    )
 
 # Display Trip History
 if st.session_state.history:
-    st.subheader("📜 Trip History")
+    st.markdown(
+        '<div class="section-title">📜 Trip History</div>',
+        unsafe_allow_html=True
+    )
     st.table(st.session_state.history)
