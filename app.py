@@ -1,10 +1,21 @@
+# Import OS module for environment variables and system-level operations
 import os
+
+# Import Streamlit to build the web-based UI
 import streamlit as st
+
+# Import datetime to work with dates and timestamps
 from datetime import datetime
 
+# Import function to create the AI travel agent
 from agent.travel_agent import create_travel_agent
+
+# Import guardrail function to check if query is travel-related
 from utils.guardrails import is_travel_related
+
+# Import helper function to build multilingual prompts
 from utils.language_helper import build_prompt
+
 
 
 # Streamlit Page Config

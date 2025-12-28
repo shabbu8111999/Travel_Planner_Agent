@@ -1,6 +1,6 @@
-# utils/language_helper.py
+# Helper utilities for language handling
 
-def build_prompt(user_query: str, language: str) -> str:
+def build_prompt(user_query: str, language: str) -> str:  # Builds a multilingual-friendly prompt for the agent
     """
     Prepares the user query for multilingual support.
 
@@ -17,9 +17,11 @@ def build_prompt(user_query: str, language: str) -> str:
         str: Prompt sent to the agent
     """
 
+    # If language is English, return the query as-is
     if language == "English":
         return user_query
 
+    # Create instructions for internal translation and response generation
     return (
         f"You are given a travel-related user query written in {language}.\n\n"
         f"INSTRUCTIONS:\n"
