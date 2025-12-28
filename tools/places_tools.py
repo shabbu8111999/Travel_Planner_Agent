@@ -20,5 +20,5 @@ def discover_places(city: str) -> list:
     # Load places data from JSON file
     places = load_json("data/places.json")
 
-    # Filter and return places matching the given city (case-insensitive)
+    # Filter and return places matching the given city
     return [p for p in places if p["city"].lower() == city.lower()]
